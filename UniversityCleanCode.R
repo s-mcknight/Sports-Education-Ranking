@@ -130,16 +130,16 @@ p5 <- predict(fit5)
 scores_mice <- (p1 + p2 + p3 + p4 + p5)/5 
 
 par(mfrow=c(1,2))
-qqnorm(scores_mice, main="Q-Q Plot of Scores")
-plot(density(scores_mice), xlab="Score", ylab="Frequency", main="Density of Scores")
-
-require(beanplot)
-beanplot(scores_micedf, what=c(0,1,0,0), col="white", main="Distribution of Scores", ylab="Highest Scores      Lowest Scores")
-beanplot(scores_micedf[-321], col=c(0,8,8,8), what=c(0,0,0,1), method="stack", add=TRUE)
-beanplot(scores_micedf[321], col=c(0,4,4,4), what=c(1,0,1,1), method="stack", add=TRUE)
-legend("bottomright", col=4, legend="Montana State", lty=1, box.lty=0)
+qqnorm(scores_mice, main="a) Q-Q Plot of Scores")
+qqline(scores_mice, col="red")
 
 scores_micedf <- scores_mice[order(scores_mice)]
+
+require(beanplot)
+beanplot(scores_micedf, what=c(0,1,0,0), col="white", main="b) Distribution of Scores", ylab="Highest Scores                  Lowest Scores")
+beanplot(scores_micedf[-321], col=c(0,8,8,8), what=c(0,0,0,1), method="stack", add=TRUE)
+
+
 scores_micedf <- as.data.frame(scores_micedf)
 rownames(scores_micedf) <- rownames(colleges_small[order(scores_mice),])
 scores_micedf$rank <- 1:646
