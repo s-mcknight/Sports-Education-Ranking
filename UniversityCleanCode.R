@@ -1,5 +1,4 @@
 #read in data
-setwd("~/Classes/Education-Sports-University-Classification/data")
 colleges <- read.csv("Colleges.csv", header=TRUE)[,-1]
 rownames(colleges) <- colleges$SchoolName
 
